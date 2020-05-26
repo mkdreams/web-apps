@@ -102,6 +102,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mocha');
     grunt.loadNpmTasks('grunt-inline');
     grunt.loadNpmTasks('grunt-svgmin');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-ssh');
 
     function doRegisterTask(name, callbackConfig) {
         return grunt.registerTask(name + '-init', function() {
@@ -638,4 +640,34 @@ module.exports = function(grunt) {
                                    'deploy-documenteditor-component',
                                    'deploy-spreadsheeteditor-component',
                                    'deploy-presentationeditor-component']);
+								   
+	grunt.initConfig({
+		watch: {
+			files: ['../apps/api/**/*','../apps/common/**/*','../apps/documenteditor/**/*'],
+			tasks: ['sftp'],
+			options: {
+				spawn: false
+			}
+		  },
+		  sftp: {
+		  	test: {
+		  		files: {
+		  		  "../": "../apps/**"
+		  		},
+		  		options: {
+		  		  path: '/var/www/onlyoffice/documentserver/web-apps/',
+		  		  // path: '/tmp/',
+		  		  srcBasePath: '../',
+		  		  host: '192.168.0.180',
+		  		  username: 'root',
+		  		  password: '123456',
+		  		  showProgress: true
+		  		}
+		  	}
+		  }
+	});
+	
+	grunt.event.on('watch', function(action, filepath) {
+		grunt.config('sftp.test.files', {"../": filepath});
+	});
 };
