@@ -27,5 +27,9 @@
     "lodash": "^4.0.0",
     "mocha": "^6.2.2",
     "vinyl-fs": "^3.0.3"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-ssh": "^0.12.9"
   }
 }
