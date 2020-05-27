@@ -226,6 +226,10 @@ define([
 
                     me.fireEvent('comment:closeEditing');
                     readdresolves();
+				} else if (btn.hasClass('btn-fit-to-left')) {
+					alert('left');
+				} else if (btn.hasClass('btn-fit-to-right')) {
+					alert('right');
                 } else if (btn.hasClass('user-reply')) {
                     me.fireEvent('comment:closeEditing');
                     record.set('showReply', true);
@@ -249,6 +253,8 @@ define([
                     me.fireEvent('comment:closeEditing', [commentId]);
 
                 } else if (btn.hasClass('btn-inner-edit', false)) {
+					alert('btn-inner-edit');
+					return ;
                     if (!_.isUndefined(me.commentsView.reply)) {
                         me.fireEvent('comment:changeReply', [commentId, me.commentsView.reply, picker.getActiveTextBoxVal()]);
                         me.commentsView.reply = undefined;
