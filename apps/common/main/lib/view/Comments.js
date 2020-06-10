@@ -254,8 +254,6 @@ define([
                     me.fireEvent('comment:closeEditing', [commentId]);
 
                 } else if (btn.hasClass('btn-inner-edit', false)) {
-					alert('btn-inner-edit');
-					return ;
                     if (!_.isUndefined(me.commentsView.reply)) {
                         me.fireEvent('comment:changeReply', [commentId, me.commentsView.reply, picker.getActiveTextBoxVal()]);
                         me.commentsView.reply = undefined;
