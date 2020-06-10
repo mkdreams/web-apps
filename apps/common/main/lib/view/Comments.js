@@ -227,9 +227,10 @@ define([
                     me.fireEvent('comment:closeEditing');
                     readdresolves();
 				} else if (btn.hasClass('btn-fit-to-left')) {
-					alert('left');
+					me.fireEvent('comment:changeCommentToLeft',[commentId]);
+					
 				} else if (btn.hasClass('btn-fit-to-right')) {
-					alert('right');
+					me.fireEvent('comment:changeCommentToRight',[commentId]);
                 } else if (btn.hasClass('user-reply')) {
                     me.fireEvent('comment:closeEditing');
                     record.set('showReply', true);

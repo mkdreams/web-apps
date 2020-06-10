@@ -189,8 +189,9 @@ define([
             /** coauthoring begin **/
             if ( this.mode.canCoAuthoring ) {
                 this.leftMenu.btnComments[(this.mode.canViewComments && !this.mode.isLightVersion) ? 'show' : 'hide']();
-                if (this.mode.canViewComments)
+                if (this.mode.canViewComments) {
                     this.leftMenu.setOptionsPanel('comment', this.getApplication().getController('Common.Controllers.Comments').getView());
+				}
 
                 this.leftMenu.btnChat[(this.mode.canChat && !this.mode.isLightVersion) ? 'show' : 'hide']();
                 if (this.mode.canChat)
@@ -219,6 +220,9 @@ define([
             } else
                 this.leftMenu.btnPlugins.hide();
             this.mode.trialMode && this.leftMenu.setDeveloperMode(this.mode.trialMode);
+			
+			//default expend coments
+			this.onShortcut('comments');
         },
 
         clickMenuFileItem: function(menu, action, isopts) {

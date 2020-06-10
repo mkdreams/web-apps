@@ -102,7 +102,8 @@ define([
 
                     // work handlers
 
-                    'comment:closeEditing':     _.bind(this.closeEditing, this)
+                    'comment:closeEditing':     _.bind(this.closeEditing, this),
+                    'comment:changeCommentToLeft':     _.bind(this.changeCommentToLeft, this),
                 },
 
                 'Common.Views.ReviewPopover': {
@@ -231,6 +232,17 @@ define([
 
             this.view.txtComment.focus();
         },
+		
+		changeCommentToLeft: function (id) {
+			console.log('C changeCommentToLeft');
+            if (this.api && id) {
+                this.api.asc_changeCommentToLeft(id);
+				this.view.showEditContainer(false);
+            }
+			
+			this.view.txtComment.focus();
+        },
+		
         onRemoveComment: function (id) {
             if (this.api && id) {
                 this.api.asc_removeComment(id);
